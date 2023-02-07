@@ -1,4 +1,4 @@
-# LM75b
+# LM75B
 
 ## MBED library for LM75B I2C temperature sensors
 
