@@ -6,7 +6,7 @@
 
 void osIsr();
 
-LM75B lm75(PB_9, PB_8, 0b00000000, PC_8, &osIsr);
+LM75B lm75_interrupt(PB_9, PB_8, 0b00000000, PC_8, &osIsr);
 DigitalOut led(LED1);
 
 
@@ -15,8 +15,8 @@ void osIsr() {
 }
 
 
-int main() {
+int interrupt() {
     led = 0;
-    lm75.setTemperatureOS(26);
-    lm75.setTemperatureHYST(23);
+    lm75_interrupt.setTemperatureOS(26);
+    lm75_interrupt.setTemperatureHYST(23);
 }
