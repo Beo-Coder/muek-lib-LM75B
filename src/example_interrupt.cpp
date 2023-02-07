@@ -15,8 +15,13 @@ void osIsr() {
 }
 
 
-void main_interrupt_example() {
+int main_interrupt_example() {
     led = 0;
     lm75_interrupt.setTemperatureOS(26);
     lm75_interrupt.setTemperatureHYST(23);
+    while (true) {
+
+    }
+
+    return 1;
 }

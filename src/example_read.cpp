@@ -9,9 +9,16 @@ LM75B lm75_read(PB_9, PB_8, 0b00000000);
 float temperature;
 
 
-void main_read_example() {
+int main_read_example() {
 
     lm75_read.init();
-    temperature = lm75_read.getTemperature();
+
+
+    while (true) {
+        temperature = lm75_read.getTemperature();
+        thread_sleep_for(100);
+    }
+
+    return 1;
 
 }
