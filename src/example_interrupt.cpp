@@ -1,4 +1,5 @@
 // Copyright (c) 2023. Leonhard Baschang
+
 #include "LM75b.h"
 #include "mbed.h"
 

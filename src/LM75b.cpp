@@ -1,7 +1,6 @@
 // Copyright (c) 2023. Leonhard Baschang
 #include "LM75b.h"
 
-
 LM75B::LM75B(PinName I2C_SDA, PinName I2C_SCL, uint8_t address) {
 
     i2c = new I2C(I2C_SDA, I2C_SCL);
@@ -12,15 +11,14 @@ LM75B::LM75B(PinName I2C_SDA, PinName I2C_SCL, uint8_t address) {
     os = new InterruptIn(NC);
 }
 
-
-LM75B::LM75B(PinName I2C_SDA, PinName I2C_SCL, uint8_t address, PinName osPin, Callback<void()> osISR) {
+LM75B::LM75B(PinName I2C_SDA, PinName I2C_SCL, uint8_t address, PinName osPin,
+             Callback<void()> osISR) {
 
     i2c = new I2C(I2C_SDA, I2C_SCL);
     if (address > 0b00000111) {
         address = 0b00000111;
     }
     this->address = (0b1001 << 4) | ((address & 0b00000111) << 1) | 0;
-
 
     setCmpIntMode(true);
     setShutdownMode(false);
@@ -32,7 +30,6 @@ LM75B::LM75B(PinName I2C_SDA, PinName I2C_SCL, uint8_t address, PinName osPin, C
     os->fall(osISR);
     os->enable_irq();
 }
-
 
 float LM75B::calc2sComplement(uint16_t data) {
     auto temp = float(static_cast<int8_t>((data >> 8) & 0xFF));
@@ -58,7 +55,6 @@ uint16_t LM75B::inv2sComplement(float data) {
     return returnData;
 }
 
-
 char LM75B::readRegisterByte(uint8_t readRegister) {
     char cmd[2];
     cmd[0] = readRegister;
@@ -73,7 +69,6 @@ void LM75B::writeRegisterByte(uint8_t writeRegister, uint8_t data) {
 
     i2c->write(address, cmd, 2);
 }
-
 
 void LM75B::setShutdownMode(bool shutdown) {
     char data = readRegisterByte(LM75_CONFIGURATION_REGISTER);
@@ -160,7 +155,6 @@ void LM75B::setTemperatureOS(float temp) {
     i2c->write(address, cmd, 3);
 }
 
-
 float LM75B::getTemperature() {
     char cmd[2];
     cmd[0] = LM75_TEMPERATURE_REGISTER;
@@ -179,10 +173,6 @@ void LM75B::init() {
     setShutdownMode(false);
 }
 
-void LM75B::disableIRQ() {
-    os->disable_irq();
-}
+void LM75B::disableIRQ() { os->disable_irq(); }
 
-void LM75B::enableIRQ() {
-    os->enable_irq();
-}
+void LM75B::enableIRQ() { os->enable_irq(); }

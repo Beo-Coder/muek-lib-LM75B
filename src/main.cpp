@@ -12,6 +12,7 @@ void printTemp(float temp) {
 
     serial_port.write(buffer, 32);
 }
+
 void osIsr();
 
 LM75B lm75(PB_9, PB_8, 0b00000000, PC_8, &osIsr);

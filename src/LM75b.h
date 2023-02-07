@@ -53,6 +53,7 @@ public:
     float getTemperature();
 
     void enableIRQ();
+
     void disableIRQ();
 };
 

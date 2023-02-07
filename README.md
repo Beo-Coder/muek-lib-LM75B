@@ -8,9 +8,9 @@
 - Set over temperature and hysteresis temperature
 - Over temperature interrupt
 - Full control over LM75B
+- Multiple sensors on same I2C bus
 
 # Usage
-
 ## Quick usage
 
 #### Initialize LM75b:
@@ -102,3 +102,12 @@ Returns the hyst-temperature as `float`
 #### Disable O.S. IRQ:
 
 `lm.disableIRQ();`
+
+# Notes
+
+- Tested on NUCLEO-L152RE (STM32)
+- The temperature is measured and read in 0.5 °C steps
+- The os/hyst-temperature can also be set in 0.5 °C steps
+- In shutdown mode all registers can be written and read
+- When using interrupt mode on O.S. pin, you need to read from the sensor to reset the O.S. signal, otherwise it will
+  remain in the current state forever (see LM75b datasheet)
