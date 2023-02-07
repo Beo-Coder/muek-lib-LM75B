@@ -13,17 +13,17 @@
 # Usage
 ## Quick usage
 
-#### Initialize LM75b:
+#### Initialize LM75B:
 
-``LM75b lm75(<I2C_SDA>, <I2C_SCL>, <address>);``
+``LM75B lm75(<I2C_SDA>, <I2C_SCL>, <address>);``
 
 - **I2C_SDA**: pon on which the sda pin is connected. Must be on an I2C interface (e.g. `PB_9`)
 - **I2C_SCL**: pon on which the scl pin is connected. Must be on an I2C interface (e.g. `PB_8`)
 - **address**: last 3 bits of lm75b address (e.g. `0b00000001`)
 
-#### Initialize LM75b with interrupt:
+#### Initialize LM75B with interrupt:
 
-``LM75b lm75(<I2C_SDA>, <I2C_SCL>, <address>, <osPin>, <osISR>);``
+``LM75B lm75(<I2C_SDA>, <I2C_SCL>, <address>, <osPin>, <osISR>);``
 
 - **I2C_SDA**: pon on which the sda pin is connected. Must be on an I2C interface (e.g. `PB_9`)
 - **I2C_SCL**: pon on which the scl pin is connected. Must be on an I2C interface (e.g. `PB_8`)
@@ -31,6 +31,7 @@
 - **osPin**: pin on which the O.S. pin is connected (e.g. `PC_8`)
 - **osISR**: address of isr that will be executed if temperature exceeds os-temperature and falls under
   hyst-temperature (e.g `&osISR`)
+
 
 #### Initialize LM75b with default parameters:
 
@@ -99,9 +100,17 @@ Returns the hyst-temperature as `float`
 
 `lm.enableIRQ();`
 
+enables the O.S. pin interrupt
+
 #### Disable O.S. IRQ:
 
 `lm.disableIRQ();`
+
+disables the O.S. pin interrupt
+
+# Temperature response diagram
+
+![see datasheet figure 9](docs/LM75B_temperature_response_diagram.png "Temperature Response Diagram")
 
 # Notes
 
@@ -109,5 +118,6 @@ Returns the hyst-temperature as `float`
 - The temperature is measured and read in 0.5 °C steps
 - The os/hyst-temperature can also be set in 0.5 °C steps
 - In shutdown mode all registers can be written and read
+- Interrupt in this library uses comparator mode and calls ISR on falling and rising edges of O.S. pin
 - When using interrupt mode on O.S. pin, you need to read from the sensor to reset the O.S. signal, otherwise it will
   remain in the current state forever (see LM75b datasheet)

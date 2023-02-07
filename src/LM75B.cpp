@@ -1,5 +1,5 @@
 // Copyright (c) 2023. Leonhard Baschang
-#include "LM75b.h"
+#include "LM75B.h"
 
 LM75B::LM75B(PinName I2C_SDA, PinName I2C_SCL, uint8_t address) {
 
@@ -20,9 +20,7 @@ LM75B::LM75B(PinName I2C_SDA, PinName I2C_SCL, uint8_t address, PinName osPin,
     }
     this->address = (0b1001 << 4) | ((address & 0b00000111) << 1) | 0;
 
-    setCmpIntMode(true);
-    setShutdownMode(false);
-    setOSPolarity(true);
+    init();
 
     os = new InterruptIn(osPin);
     os->mode(PullUp);
