@@ -15,7 +15,7 @@ void osIsr() {
 }
 
 
-int interrupt() {
+void interrupt() {
     led = 0;
     lm75_interrupt.setTemperatureOS(26);
     lm75_interrupt.setTemperatureHYST(23);
