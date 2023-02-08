@@ -17,8 +17,8 @@
 
 ``LM75B lm75(<I2C_SDA>, <I2C_SCL>, <address>);``
 
-- **I2C_SDA**: pon on which the sda pin is connected. Must be on an I2C interface (e.g. `PB_9`)
-- **I2C_SCL**: pon on which the scl pin is connected. Must be on an I2C interface (e.g. `PB_8`)
+- **I2C_SDA**: pin on which the sda pin is connected. Must be on an I2C interface (e.g. `PB_9`)
+- **I2C_SCL**: pin on which the scl pin is connected. Must be on an I2C interface (e.g. `PB_8`)
 - **address**: last 3 bits of lm75b address (e.g. `0b00000001`)
 
 <br/>
@@ -27,8 +27,8 @@
 
 ``LM75B lm75(<I2C_SDA>, <I2C_SCL>, <address>, <osPin>, <osISR>);``
 
-- **I2C_SDA**: pon on which the sda pin is connected. Must be on an I2C interface (e.g. `PB_9`)
-- **I2C_SCL**: pon on which the scl pin is connected. Must be on an I2C interface (e.g. `PB_8`)
+- **I2C_SDA**: pin on which the sda pin is connected. Must be on an I2C interface (e.g. `PB_9`)
+- **I2C_SCL**: pin on which the scl pin is connected. Must be on an I2C interface (e.g. `PB_8`)
 - **address**: last 3 bits of lm75b address (e.g. `0b00000001`)
 - **osPin**: pin on which the O.S. pin is connected (e.g. `PC_8`)
 - **osISR**: address of isr that will be executed if temperature exceeds os-temperature and falls under
